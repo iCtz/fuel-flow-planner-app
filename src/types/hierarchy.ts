@@ -1,3 +1,4 @@
+import { Generator } from "@/types/generators";
 
 export type Region = {
   id: string;
@@ -23,7 +24,7 @@ export type Site = {
   location: string;
   coordinates?: { lat: number; lng: number };
   assignedVendorId?: string;
-  generators: import("@/types/generators").Generator[];
+  generators: Generator[];
 };
 
 export type User = {
