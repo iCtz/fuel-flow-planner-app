@@ -2,6 +2,7 @@
 import React from "react";
 import { Header } from "@/components/Header";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,8 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children, title, description, actions }: DashboardLayoutProps) {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -37,7 +40,7 @@ export function DashboardLayout({ children, title, description, actions }: Dashb
       <footer className="border-t py-6">
         <div className="container">
           <p className="text-center text-sm text-muted-foreground">
-            &copy; 2025 Fuel Flow Planner. All rights reserved.
+            {t("footer.copyright")}
           </p>
         </div>
       </footer>

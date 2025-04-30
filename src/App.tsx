@@ -20,31 +20,37 @@ import VendorsPage from "./pages/dashboard/VendorsPage";
 import ReportsPage from "./pages/dashboard/ReportsPage";
 import FieldReportsPage from "./pages/dashboard/FieldReportsPage";
 
+// Import i18n configuration
+import "./i18n";
+import { LanguageProvider } from "./contexts/LanguageContext";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/regions" element={<RegionsPage />} />
-          <Route path="/zones" element={<ZonesPage />} />
-          <Route path="/zones/:zoneId" element={<ZoneDetailsPage />} />
-          <Route path="/sites" element={<SitesPage />} />
-          <Route path="/sites/:siteId" element={<SiteDetailsPage />} />
-          <Route path="/generators" element={<GeneratorsPage />} />
-          <Route path="/generators/:generatorId" element={<GeneratorDetailsPage />} />
-          <Route path="/planning" element={<PlanningPage />} />
-          <Route path="/vendors" element={<VendorsPage />} />
-          <Route path="/reports" element={<ReportsPage />} />
-          <Route path="/field-reports" element={<FieldReportsPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/regions" element={<RegionsPage />} />
+            <Route path="/zones" element={<ZonesPage />} />
+            <Route path="/zones/:zoneId" element={<ZoneDetailsPage />} />
+            <Route path="/sites" element={<SitesPage />} />
+            <Route path="/sites/:siteId" element={<SiteDetailsPage />} />
+            <Route path="/generators" element={<GeneratorsPage />} />
+            <Route path="/generators/:generatorId" element={<GeneratorDetailsPage />} />
+            <Route path="/planning" element={<PlanningPage />} />
+            <Route path="/vendors" element={<VendorsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/field-reports" element={<FieldReportsPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

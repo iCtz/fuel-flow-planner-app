@@ -6,25 +6,28 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => {
     return location.pathname === path;
   };
 
   const navItems = [
-    { name: "Dashboard", path: "/", icon: <LayoutDashboard className="h-4 w-4" /> },
-    { name: "Regions", path: "/regions", icon: <Globe className="h-4 w-4" /> },
-    { name: "Zones", path: "/zones", icon: <Map className="h-4 w-4" /> },
-    { name: "Sites", path: "/sites", icon: <Box className="h-4 w-4" /> },
-    { name: "Generators", path: "/generators", icon: <Fuel className="h-4 w-4" /> },
-    { name: "Planning", path: "/planning", icon: <CalendarDays className="h-4 w-4" /> },
-    { name: "Vendors", path: "/vendors", icon: <Users className="h-4 w-4" /> },
-    { name: "Reports", path: "/reports", icon: <Bell className="h-4 w-4" /> },
+    { name: t("common.dashboard"), path: "/", icon: <LayoutDashboard className="h-4 w-4" /> },
+    { name: t("common.regions"), path: "/regions", icon: <Globe className="h-4 w-4" /> },
+    { name: t("common.zones"), path: "/zones", icon: <Map className="h-4 w-4" /> },
+    { name: t("common.sites"), path: "/sites", icon: <Box className="h-4 w-4" /> },
+    { name: t("common.generators"), path: "/generators", icon: <Fuel className="h-4 w-4" /> },
+    { name: t("common.planning"), path: "/planning", icon: <CalendarDays className="h-4 w-4" /> },
+    { name: t("common.vendors"), path: "/vendors", icon: <Users className="h-4 w-4" /> },
+    { name: t("common.reports"), path: "/reports", icon: <Bell className="h-4 w-4" /> },
   ];
 
   return (
@@ -41,7 +44,7 @@ export function Header() {
           </Button>
           <Link to="/" className="flex items-center space-x-2">
             <Fuel className="h-6 w-6 text-fuel-accent" />
-            <span className="font-bold text-lg hidden sm:inline-block">Fuel Flow Planner</span>
+            <span className="font-bold text-lg hidden sm:inline-block">{t("header.appTitle")}</span>
           </Link>
         </div>
 
@@ -79,6 +82,7 @@ export function Header() {
           <Button size="icon" variant="ghost">
             <Settings className="h-4 w-4" />
           </Button>
+          <LanguageSwitcher />
           <ModeToggle />
         </div>
       </div>

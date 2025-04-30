@@ -1,0 +1,53 @@
+
+{
+  "common": {
+    "dashboard": "لوحة التحكم",
+    "regions": "المناطق",
+    "zones": "النطاقات",
+    "sites": "المواقع",
+    "generators": "المولدات",
+    "planning": "التخطيط",
+    "vendors": "الموردون",
+    "reports": "التقارير",
+    "fieldReports": "تقارير الميدان"
+  },
+  "header": {
+    "appTitle": "مخطط تدفق الوقود",
+    "language": "اللغة"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "description": "مراقبة وإدارة نظام تخطيط تدفق الوقود",
+    "overview": "نظرة عامة",
+    "regionsZones": "المناطق والنطاقات",
+    "sites": "المواقع",
+    "generators": "المولدات",
+    "quickStats": {
+      "totalFuelUsed": "إجمالي الوقود المستخدم",
+      "avgConsumption": "متوسط الاستهلاك",
+      "refillEfficiency": "كفاءة إعادة التعبئة",
+      "forecastRange": "نطاق التوقع"
+    },
+    "generatorStatus": "حالة المولد",
+    "planningAnalytics": "التخطيط والتحليلات",
+    "viewDetails": "عرض التفاصيل",
+    "viewAll": "عرض الكل"
+  },
+  "actions": {
+    "add": "إضافة",
+    "edit": "تحرير",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "view": "عرض",
+    "addGenerator": "إضافة مولد",
+    "last30Days": "آخر 30 يوم"
+  },
+  "footer": {
+    "copyright": "© 2025 مخطط تدفق الوقود. جميع الحقوق محفوظة."
+  },
+  "notifications": {
+    "featureNotAvailable": "الميزة غير متوفرة",
+    "comingSoon": "ستتوفر إضافة مولدات جديدة قريبًا."
+  }
+}

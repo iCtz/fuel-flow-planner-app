@@ -1,27 +1,33 @@
+
 import { Generator } from "@/types/generators";
+
+export type LocalizedString = {
+  en: string;
+  ar: string;
+};
 
 export type Region = {
   id: string;
-  name: string;
-  description?: string;
+  name: string | LocalizedString;
+  description?: string | LocalizedString;
   zones: Zone[];
 };
 
 export type Zone = {
   id: string;
-  name: string;
+  name: string | LocalizedString;
   regionId: string;
   supervisor?: User;
   supervisorId?: string;
-  description?: string;
+  description?: string | LocalizedString;
   sites: Site[];
 };
 
 export type Site = {
   id: string;
-  name: string;
+  name: string | LocalizedString;
   zoneId: string;
-  location: string;
+  location: string | LocalizedString;
   coordinates?: { lat: number; lng: number };
   assignedVendorId?: string;
   generators: Generator[];
@@ -37,7 +43,7 @@ export type User = {
 
 export type Vendor = {
   id: string;
-  name: string;
+  name: string | LocalizedString;
   email: string;
   phone: string;
   zoneIds: string[]; // Zones this vendor can service
@@ -61,7 +67,7 @@ export type PlanItem = {
   amount: number;
   vendorId?: string;
   status: "planned" | "completed" | "missed";
-  notes?: string;
+  notes?: string | LocalizedString;
 };
 
 export type FieldReport = {
@@ -73,12 +79,12 @@ export type FieldReport = {
   reviewedBy?: string;
   status: "submitted" | "under_review" | "approved" | "rejected";
   readings: TankReading[];
-  notes?: string;
+  notes?: string | LocalizedString;
 };
 
 export type TankReading = {
   tankId: string;
   fuelLevel: number;
   timestamp: string;
-  notes?: string;
+  notes?: string | LocalizedString;
 };

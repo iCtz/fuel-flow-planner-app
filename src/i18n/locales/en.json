@@ -1,0 +1,53 @@
+
+{
+  "common": {
+    "dashboard": "Dashboard",
+    "regions": "Regions",
+    "zones": "Zones",
+    "sites": "Sites",
+    "generators": "Generators",
+    "planning": "Planning",
+    "vendors": "Vendors",
+    "reports": "Reports",
+    "fieldReports": "Field Reports"
+  },
+  "header": {
+    "appTitle": "Fuel Flow Planner",
+    "language": "Language"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Monitor and manage your fuel flow planning system",
+    "overview": "Overview",
+    "regionsZones": "Regions & Zones",
+    "sites": "Sites",
+    "generators": "Generators",
+    "quickStats": {
+      "totalFuelUsed": "Total Fuel Used",
+      "avgConsumption": "Avg. Consumption",
+      "refillEfficiency": "Refill Efficiency",
+      "forecastRange": "Forecast Range"
+    },
+    "generatorStatus": "Generator Status",
+    "planningAnalytics": "Planning and Analytics",
+    "viewDetails": "View Details",
+    "viewAll": "View All"
+  },
+  "actions": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "view": "View",
+    "addGenerator": "Add Generator",
+    "last30Days": "Last 30 days"
+  },
+  "footer": {
+    "copyright": "© 2025 Fuel Flow Planner. All rights reserved."
+  },
+  "notifications": {
+    "featureNotAvailable": "Feature Not Available",
+    "comingSoon": "Adding new generators will be available soon."
+  }
+}

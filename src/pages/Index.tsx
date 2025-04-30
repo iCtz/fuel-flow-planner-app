@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
@@ -26,46 +25,48 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    document.title = "Fuel Flow Planner - Dashboard";
-  }, []);
+    document.title = t("header.appTitle") + " - " + t("common.dashboard");
+  }, [t]);
 
   const handleAddGenerator = () => {
     toast({
-      title: "Feature Not Available",
-      description: "Adding new generators will be available soon.",
+      title: t("notifications.featureNotAvailable"),
+      description: t("notifications.comingSoon"),
       duration: 3000,
     });
   };
 
   return (
     <DashboardLayout 
-      title="Dashboard"
-      description="Monitor and manage your fuel flow planning system"
+      title={t("dashboard.title")}
+      description={t("dashboard.description")}
       actions={
         <>
           <Button variant="outline" size="sm">
-            Last 30 days
+            {t("actions.last30Days")}
           </Button>
           <Button variant="default" size="sm" onClick={handleAddGenerator}>
             <Plus className="h-4 w-4 mr-1" />
-            Add Generator
+            {t("actions.addGenerator")}
           </Button>
         </>
       }
     >
       <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-6">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="regions">Regions & Zones</TabsTrigger>
-          <TabsTrigger value="sites">Sites</TabsTrigger>
-          <TabsTrigger value="generators">Generators</TabsTrigger>
+          <TabsTrigger value="overview">{t("dashboard.overview")}</TabsTrigger>
+          <TabsTrigger value="regions">{t("dashboard.regionsZones")}</TabsTrigger>
+          <TabsTrigger value="sites">{t("dashboard.sites")}</TabsTrigger>
+          <TabsTrigger value="generators">{t("dashboard.generators")}</TabsTrigger>
         </TabsList>
         
         <TabsContent value="overview" className="space-y-6">
@@ -73,7 +74,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-6">
-              <h2 className="text-lg font-medium">Generator Status</h2>
+              <h2 className="text-lg font-medium">{t("dashboard.generatorStatus")}</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {generators.slice(0, 4).map((generator) => (
                   <GeneratorCard key={generator.id} generator={generator} />
@@ -82,7 +83,7 @@ const Index = () => {
             </div>
             
             <div className="space-y-6">
-              <h2 className="text-lg font-medium">Planning and Analytics</h2>
+              <h2 className="text-lg font-medium">{t("dashboard.planningAnalytics")}</h2>
               
               <div className="grid gap-4">
                 <UpcomingScheduleCard events={upcomingEvents} />
