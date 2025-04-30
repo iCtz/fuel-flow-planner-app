@@ -1,5 +1,5 @@
 import { Region, Zone, Site, User, Vendor, FuelPlan, FieldReport } from "@/types/hierarchy";
-import { Generator, Tank } from "@/types/generators";
+import { Generator as FuelGenerator, Tank } from "@/types/generators";
 import { FuelEvent } from "@/types/fuelEvents";
 
 // Regions
@@ -206,8 +206,8 @@ export const tanks: Tank[] = [
   }
 ];
 
-// Generators
-export const generators: Generator[] = [
+// Generators - renamed from Generator to FuelGenerator
+export const generators: FuelGenerator[] = [
   {
     id: "generator-1",
     name: "Main Backup Generator",
