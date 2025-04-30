@@ -1,5 +1,6 @@
 import { Region, Zone, Site, User, Vendor, FuelPlan, FieldReport } from "@/types/hierarchy";
 import { Generator, Tank } from "@/types/generators";
+import { FuelEvent } from "@/types/fuelEvents";
 
 // Regions
 export const regions: Region[] = [
@@ -423,7 +424,7 @@ export const quickStats = {
   forecastDays: 28
 };
 
-export const upcomingEvents = [
+export const upcomingEvents: FuelEvent[] = [
   {
     id: "event-1",
     generatorId: "generator-1",

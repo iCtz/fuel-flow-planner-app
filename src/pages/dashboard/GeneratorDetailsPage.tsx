@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FuelGauge } from "@/components/Dashboard/FuelGauge";
 import { Generator, Tank } from "@/types/generators";
-import { Calendar, Droplet, FileText, MapPin, Settings, Tool } from "lucide-react";
+import { Calendar, Droplet, FileText, MapPin, Settings, Wrench } from "lucide-react";
 
 const GeneratorDetailsPage = () => {
   const { generatorId } = useParams();
@@ -175,7 +175,7 @@ const GeneratorDetailsPage = () => {
                 description: "This feature will be available soon."
               });
             }}>
-              <Tool className="h-4 w-4 mr-2" />
+              <Wrench className="h-4 w-4 mr-2" />
               Schedule Maintenance
             </Button>
             <Button variant="outline" className="w-full justify-start" onClick={() => {
