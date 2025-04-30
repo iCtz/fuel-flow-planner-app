@@ -23,7 +23,7 @@ export type Site = {
   location: string;
   coordinates?: { lat: number; lng: number };
   assignedVendorId?: string;
-  generators: Generator[];
+  generators: import("@/types/generators").Generator[];
 };
 
 export type User = {
