@@ -7,6 +7,7 @@ import { Plus, Building, MapPin, Mail, Phone } from "lucide-react";
 import { vendors, zones, sites } from "@/data/mockData";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const VendorsPage = () => {
   const { toast } = useToast();
@@ -29,7 +30,7 @@ const VendorsPage = () => {
   
   const getZoneNames = (zoneIds: string[]) => {
     if (zoneIds.length === 0) return "";
-    return zoneIds.map(id => zones.find(zone => zone.id === id)?.name || 'Unknown').join(', ');
+    return zoneIds.map(id => renderLocalizedString(zones.find(zone => zone.id === id)?.name || 'Unknown')).join(', ');
   };
 
   return (
@@ -47,7 +48,7 @@ const VendorsPage = () => {
         {vendors.map(vendor => (
           <DashboardCard 
             key={vendor.id} 
-            title={vendor.name}
+            title={renderLocalizedString(vendor.name)}
             footer={
               <div className="w-full flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">

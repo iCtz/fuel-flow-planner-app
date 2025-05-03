@@ -1,24 +1,25 @@
 
+import { LocalizedString } from "./hierarchy";
+
 export type Generator = {
   id: string;
-  name: string;
+  name: string | LocalizedString;
   siteId: string;
-  location: string;
-  capacity: number;
-  fuelLevel: number;
+  location: string | LocalizedString;
   status: 'operational' | 'maintenance' | 'offline';
-  lastRefill?: string;
-  nextScheduledRefill?: string;
-  consumption?: number;
+  fuelLevel: number; // percentage
+  capacity: number; // liters
   tanks: Tank[];
+  lastRefill?: string; // ISO date string
+  nextScheduledRefill?: string; // ISO date string
+  alerts?: number;
+  needsMaintenance?: boolean;
 };
 
 export type Tank = {
   id: string;
   generatorId: string;
-  name: string;
-  capacity: number;
-  currentLevel: number;
-  lastReading?: string;
-  gauge?: string; // Type of measurement tool
+  capacity: number; // liters
+  currentLevel: number; // liters
+  lastMeasurement?: string; // ISO date string
 };

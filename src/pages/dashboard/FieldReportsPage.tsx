@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const FieldReportsPage = () => {
   const { toast } = useToast();
@@ -93,7 +93,7 @@ const FieldReportsPage = () => {
               <SelectItem value="all">All Zones</SelectItem>
               {zones.map(zone => (
                 <SelectItem key={zone.id} value={zone.id}>
-                  {zone.name}
+                  {renderLocalizedString(zone.name)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -114,7 +114,7 @@ const FieldReportsPage = () => {
               <SelectItem value="all">All Sites</SelectItem>
               {zoneSites.map(site => (
                 <SelectItem key={site.id} value={site.id}>
-                  {site.name}
+                  {renderLocalizedString(site.name)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -183,12 +183,12 @@ const FieldReportsPage = () => {
                         <td className="py-3 px-4 font-medium">{report.reportDate}</td>
                         <td className="py-3 px-4">
                           <Link to={`/sites/${site?.id}`} className="hover:underline">
-                            {site?.name || 'Unknown'}
+                            {site ? renderLocalizedString(site.name) : 'Unknown'}
                           </Link>
                         </td>
                         <td className="py-3 px-4">
                           <Link to={`/generators/${generator?.id}`} className="hover:underline">
-                            {generator?.name || 'Unknown'}
+                            {generator ? renderLocalizedString(generator.name) : 'Unknown'}
                           </Link>
                         </td>
                         <td className="py-3 px-4">{submitter?.name || report.submittedBy}</td>
@@ -282,7 +282,7 @@ const FieldReportsPage = () => {
                       <p className="text-sm font-medium mb-1">Site</p>
                       <p className="text-sm">
                         <Link to={`/sites/${site?.id}`} className="hover:underline">
-                          {site?.name || 'Unknown'} ({site?.location})
+                          {site ? renderLocalizedString(site.name) : 'Unknown'} ({site ? renderLocalizedString(site.location) : ''})
                         </Link>
                       </p>
                     </div>
@@ -291,7 +291,7 @@ const FieldReportsPage = () => {
                       <p className="text-sm font-medium mb-1">Generator</p>
                       <p className="text-sm">
                         <Link to={`/generators/${generator?.id}`} className="hover:underline">
-                          {generator?.name || 'Unknown'} ({generator?.location})
+                          {generator ? renderLocalizedString(generator.name) : 'Unknown'} ({generator ? renderLocalizedString(generator.location) : ''})
                         </Link>
                       </p>
                     </div>
@@ -338,7 +338,7 @@ const FieldReportsPage = () => {
                   {report.notes && (
                     <div className="mb-4">
                       <p className="text-sm font-medium mb-1">Notes</p>
-                      <p className="text-sm text-muted-foreground">{report.notes}</p>
+                      <p className="text-sm text-muted-foreground">{renderLocalizedString(report.notes)}</p>
                     </div>
                   )}
                   

@@ -13,7 +13,7 @@ export const getLocalizedString = (
   return text[lang as keyof LocalizedString] || text.en || '';
 };
 
-// React hook to get localized strings based on current language
+// React hook to use localized strings based on current language
 export const useLocalizedString = () => {
   const { currentLanguage } = useLanguage();
   

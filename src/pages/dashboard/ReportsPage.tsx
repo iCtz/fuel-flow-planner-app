@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -20,6 +19,7 @@ import {
   XAxis,
   YAxis
 } from "recharts";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const ReportsPage = () => {
   const { toast } = useToast();
@@ -52,7 +52,7 @@ const ReportsPage = () => {
     });
     
     return {
-      name: zone.name,
+      name: renderLocalizedString(zone.name),
       generators: zoneGenerators.length,
     };
   });
@@ -201,10 +201,10 @@ const ReportsPage = () => {
                         <tr key={site.id} className="border-b">
                           <td className="py-2 px-4">
                             <Link to={`/sites/${site.id}`} className="hover:underline">
-                              {site.name}
+                              {renderLocalizedString(site.name)}
                             </Link>
                           </td>
-                          <td className="py-2 px-4">{zone?.name || 'Unknown'}</td>
+                          <td className="py-2 px-4">{zone ? renderLocalizedString(zone.name) : 'Unknown'}</td>
                           <td className="py-2 px-4 text-right">{consumption}L</td>
                         </tr>
                       );

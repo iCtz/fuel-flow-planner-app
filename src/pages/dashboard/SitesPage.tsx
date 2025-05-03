@@ -8,6 +8,7 @@ import { sites, zones, vendors } from "@/data/mockData";
 import { Link, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Site } from "@/types/hierarchy";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const SitesPage = () => {
   const { toast } = useToast();
@@ -37,7 +38,7 @@ const SitesPage = () => {
 
   return (
     <DashboardLayout 
-      title={zoneId ? `Sites in ${zones.find(z => z.id === zoneId)?.name}` : "All Sites"}
+      title={zoneId ? `Sites in ${renderLocalizedString(zones.find(z => z.id === zoneId)?.name)}` : "All Sites"}
       description="Manage all sites and their generators"
       actions={
         <>
@@ -61,17 +62,17 @@ const SitesPage = () => {
           return (
             <DashboardCard 
               key={site.id} 
-              title={site.name}
+              title={renderLocalizedString(site.name)}
               footer={
                 <div className="w-full text-sm text-muted-foreground">
-                  Zone: {zoneName}
+                  Zone: {renderLocalizedString(zoneName)}
                 </div>
               }
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-fuel-accent" />
-                  <span className="text-sm">{site.location}</span>
+                  <span className="text-sm">{renderLocalizedString(site.location)}</span>
                 </div>
                 
                 <div className="flex justify-between">
@@ -85,7 +86,7 @@ const SitesPage = () => {
                   <div className="flex items-center gap-1.5">
                     <Building className="h-4 w-4 text-muted-foreground" />
                     <span className="text-sm text-muted-foreground">
-                      {vendor ? `Vendor: ${vendor.name}` : "No vendor assigned"}
+                      {vendor ? `Vendor: ${renderLocalizedString(vendor.name)}` : "No vendor assigned"}
                     </span>
                   </div>
                 </div>

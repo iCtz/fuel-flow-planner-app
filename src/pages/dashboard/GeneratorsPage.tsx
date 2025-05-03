@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { GeneratorCard } from "@/components/Dashboard/GeneratorCard";
 import { Input } from "@/components/ui/input";
 import { Generator } from "@/types/generators";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const GeneratorsPage = () => {
   const { toast } = useToast();
@@ -54,14 +55,14 @@ const GeneratorsPage = () => {
     const site = sites.find(site => site.id === generator.siteId);
     const zone = site ? zones.find(zone => zone.id === site.zoneId) : null;
     return {
-      siteName: site?.name || "Unknown site",
-      zoneName: zone?.name || "Unknown zone",
+      siteName: site ? renderLocalizedString(site.name) : "Unknown site",
+      zoneName: zone ? renderLocalizedString(zone.name) : "Unknown zone",
     };
   };
 
   return (
     <DashboardLayout 
-      title={siteId ? `Generators at ${sites.find(site => site.id === siteId)?.name}` : "All Generators"}
+      title={siteId ? `Generators at ${renderLocalizedString(sites.find(site => site.id === siteId)?.name)}` : "All Generators"}
       description="Monitor and manage all generators"
       actions={
         <>

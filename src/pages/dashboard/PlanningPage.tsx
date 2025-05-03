@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -9,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const PlanningPage = () => {
   const { toast } = useToast();
@@ -91,7 +91,7 @@ const PlanningPage = () => {
               <SelectItem value="all">All Zones</SelectItem>
               {zones.map(zone => (
                 <SelectItem key={zone.id} value={zone.id}>
-                  {zone.name}
+                  {renderLocalizedString(zone.name)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -156,7 +156,7 @@ const PlanningPage = () => {
                 return (
                   <DashboardCard 
                     key={plan.id} 
-                    title={`${zone?.name || 'Unknown Zone'} - ${selectedMonth}`}
+                    title={`${zone ? renderLocalizedString(zone.name) : 'Unknown Zone'} - ${selectedMonth}`}
                     footer={
                       <div className="w-full flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">
@@ -298,16 +298,16 @@ const PlanningPage = () => {
                             <td className="py-3 px-4 font-medium">{item.scheduledDate}</td>
                             <td className="py-3 px-4">
                               <Link to={`/sites/${site?.id}`} className="hover:underline">
-                                {site?.name || 'Unknown'}
+                                {site ? renderLocalizedString(site.name) : 'Unknown'}
                               </Link>
                             </td>
                             <td className="py-3 px-4">
                               <Link to={`/generators/${generator?.id}`} className="hover:underline">
-                                {generator?.name || 'Unknown'}
+                                {generator ? renderLocalizedString(generator.name) : 'Unknown'}
                               </Link>
                             </td>
                             <td className="py-3 px-4">{item.amount}L</td>
-                            <td className="py-3 px-4">{vendor?.name || 'Not assigned'}</td>
+                            <td className="py-3 px-4">{vendor ? renderLocalizedString(vendor.name) : 'Not assigned'}</td>
                             <td className="py-3 px-4">
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
                                 {item.status}

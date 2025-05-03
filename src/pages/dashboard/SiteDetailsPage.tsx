@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GeneratorCard } from "@/components/Dashboard/GeneratorCard";
 import { Site } from "@/types/hierarchy";
 import { Generator } from "@/types/generators";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const SiteDetailsPage = () => {
   const { siteId } = useParams();
@@ -29,7 +30,7 @@ const SiteDetailsPage = () => {
       
       if (siteData) {
         setSite(siteData);
-        document.title = `Fuel Flow Planner - ${siteData.name}`;
+        document.title = `Fuel Flow Planner - ${renderLocalizedString(siteData.name)}`;
         
         // Get zone
         setZone(zones.find(z => z.id === siteData.zoneId));
@@ -61,8 +62,8 @@ const SiteDetailsPage = () => {
 
   return (
     <DashboardLayout 
-      title={site.name}
-      description={`Site in ${zone?.name || 'Unknown Zone'}`}
+      title={renderLocalizedString(site.name)}
+      description={`Site in ${zone ? renderLocalizedString(zone.name) : 'Unknown Zone'}`}
       actions={
         <>
           <Button variant="outline" size="sm" asChild>

@@ -8,6 +8,7 @@ import { zones, regions, users } from "@/data/mockData";
 import { Link, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Zone } from "@/types/hierarchy";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const ZonesPage = () => {
   const { toast } = useToast();
@@ -37,7 +38,7 @@ const ZonesPage = () => {
 
   return (
     <DashboardLayout 
-      title={regionId ? `Zones in ${regions.find(r => r.id === regionId)?.name}` : "All Zones"}
+      title={regionId ? `Zones in ${renderLocalizedString(regions.find(r => r.id === regionId)?.name)}` : "All Zones"}
       description="Manage zones and their supervisors"
       actions={
         <>
@@ -61,10 +62,10 @@ const ZonesPage = () => {
           return (
             <DashboardCard 
               key={zone.id} 
-              title={zone.name}
+              title={renderLocalizedString(zone.name)}
               footer={
                 <div className="flex items-center justify-between w-full">
-                  <span className="text-sm text-muted-foreground">Region: {regionName}</span>
+                  <span className="text-sm text-muted-foreground">Region: {renderLocalizedString(regionName)}</span>
                   <div className="flex gap-1">
                     <Button size="icon" variant="ghost" onClick={() => toast({
                       title: "Edit Zone",
@@ -84,7 +85,7 @@ const ZonesPage = () => {
             >
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">
-                  {zone.description}
+                  {renderLocalizedString(zone.description)}
                 </p>
                 
                 <div className="flex items-center justify-between">

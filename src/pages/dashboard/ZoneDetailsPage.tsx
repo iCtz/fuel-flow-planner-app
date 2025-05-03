@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { DashboardLayout } from '@/components/layouts/DashboardLayout';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,7 @@ import { sites, zones, users, generators, fuelPlans } from '@/data/mockData';
 import { Fuel, Map, Users, Calendar } from 'lucide-react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const ZoneDetailsPage = () => {
   const { zoneId } = useParams<{ zoneId: string }>();
@@ -34,8 +34,8 @@ const ZoneDetailsPage = () => {
   
   return (
     <DashboardLayout 
-      title={zone.name} 
-      description={`Zone details and management for ${zone.name}`}
+      title={renderLocalizedString(zone.name)} 
+      description={`Zone details and management for ${renderLocalizedString(zone.name)}`}
       actions={
         <>
           <Button variant="outline" size="sm" asChild>
@@ -55,7 +55,7 @@ const ZoneDetailsPage = () => {
           <div className="bg-card rounded-lg border p-4">
             <h2 className="text-lg font-semibold mb-2">Zone Information</h2>
             <div className="space-y-2">
-              <p><span className="font-medium">Description:</span> {zone.description}</p>
+              <p><span className="font-medium">Description:</span> {renderLocalizedString(zone.description)}</p>
               <p>
                 <span className="font-medium">Supervisor:</span>{" "}
                 {supervisor ? supervisor.name : "No supervisor assigned"}
@@ -96,7 +96,7 @@ const ZoneDetailsPage = () => {
         
         <TabsContent value="sites" className="space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold">Sites in {zone.name}</h2>
+            <h2 className="text-xl font-bold">Sites in {renderLocalizedString(zone.name)}</h2>
             <Button size="sm" onClick={() => toast({
               title: "Feature Not Available",
               description: "Adding new sites will be available soon."
@@ -109,8 +109,8 @@ const ZoneDetailsPage = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {zoneSites.map(site => (
                 <div key={site.id} className="bg-card rounded-lg border p-4">
-                  <h3 className="font-semibold">{site.name}</h3>
-                  <p className="text-sm text-muted-foreground">{site.location}</p>
+                  <h3 className="font-semibold">{renderLocalizedString(site.name)}</h3>
+                  <p className="text-sm text-muted-foreground">{renderLocalizedString(site.location)}</p>
                   <div className="mt-3 flex justify-between items-center">
                     <span className="text-sm">{site.generators.length} generators</span>
                     <Button size="sm" variant="outline" asChild>
@@ -127,7 +127,7 @@ const ZoneDetailsPage = () => {
         
         <TabsContent value="generators" className="space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold">Generators in {zone.name}</h2>
+            <h2 className="text-xl font-bold">Generators in {renderLocalizedString(zone.name)}</h2>
           </div>
           
           {zoneGenerators.length > 0 ? (
@@ -136,8 +136,8 @@ const ZoneDetailsPage = () => {
                 const site = sites.find(s => s.id === generator.siteId);
                 return (
                   <div key={generator.id} className="bg-card rounded-lg border p-4">
-                    <h3 className="font-semibold">{generator.name}</h3>
-                    <p className="text-sm text-muted-foreground">{site?.name}</p>
+                    <h3 className="font-semibold">{renderLocalizedString(generator.name)}</h3>
+                    <p className="text-sm text-muted-foreground">{site ? renderLocalizedString(site.name) : ''}</p>
                     <div className="mt-2">
                       <div className="bg-gray-100 dark:bg-gray-800 h-2 rounded-full">
                         <div 
@@ -168,7 +168,7 @@ const ZoneDetailsPage = () => {
         
         <TabsContent value="plans" className="space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold">Fuel Plans for {zone.name}</h2>
+            <h2 className="text-xl font-bold">Fuel Plans for {renderLocalizedString(zone.name)}</h2>
             <Button size="sm" onClick={() => navigate('/planning')}>
               Create New Plan
             </Button>
@@ -209,7 +209,7 @@ const ZoneDetailsPage = () => {
         
         <TabsContent value="reports" className="space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold">Reports for {zone.name}</h2>
+            <h2 className="text-xl font-bold">Reports for {renderLocalizedString(zone.name)}</h2>
             <Button size="sm" onClick={() => navigate('/reports')}>
               View All Reports
             </Button>

@@ -6,6 +6,7 @@ import { Plus, Edit, Trash, ChevronRight } from "lucide-react";
 import { regions } from "@/data/mockData";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const RegionsPage = () => {
   const { toast } = useToast();
@@ -47,8 +48,8 @@ const RegionsPage = () => {
             <tbody>
               {regions.map((region) => (
                 <tr key={region.id} className="border-b hover:bg-muted/50">
-                  <td className="py-3 px-4">{region.name}</td>
-                  <td className="py-3 px-4 text-muted-foreground">{region.description}</td>
+                  <td className="py-3 px-4">{renderLocalizedString(region.name)}</td>
+                  <td className="py-3 px-4 text-muted-foreground">{renderLocalizedString(region.description)}</td>
                   <td className="py-3 px-4">{region.zones.length}</td>
                   <td className="py-3 px-4">
                     <div className="flex gap-2">
