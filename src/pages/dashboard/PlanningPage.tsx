@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -153,10 +154,11 @@ const PlanningPage = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {currentPlans.map(plan => {
                 const zone = zones.find(z => z.id === plan.zoneId);
+                const zoneName = zone ? renderLocalizedString(zone.name) : 'Unknown Zone';
                 return (
                   <DashboardCard 
                     key={plan.id} 
-                    title={`${zone ? renderLocalizedString(zone.name) : 'Unknown Zone'} - ${selectedMonth}`}
+                    title={`${zoneName} - ${selectedMonth}`}
                     footer={
                       <div className="w-full flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">
@@ -242,15 +244,16 @@ const PlanningPage = () => {
                             <div className="mt-1">
                               {events.map((event: any, eventIndex: number) => {
                                 const siteInfo = sites.find(s => s.id === event.siteId);
+                                const siteName = siteInfo ? renderLocalizedString(siteInfo.name) : 'Unknown Site';
                                 return (
                                   <div 
                                     key={eventIndex}
                                     className="text-xs p-1 mb-1 rounded bg-blue-100 text-blue-800"
-                                    title={`${siteInfo?.name || 'Unknown Site'} - ${event.amount}L`}
+                                    title={`${siteName} - ${event.amount}L`}
                                   >
                                     <div className="flex items-center gap-1 truncate">
                                       <Droplet className="h-3 w-3" />
-                                      <span className="truncate">{siteInfo?.name || 'Unknown Site'}</span>
+                                      <span className="truncate">{siteName}</span>
                                     </div>
                                   </div>
                                 );
@@ -293,21 +296,26 @@ const PlanningPage = () => {
                         const generator = generators.find(g => g.id === item.generatorId);
                         const vendor = vendors.find(v => v.id === item.vendorId);
                         
+                        // Create string representations
+                        const siteName = site ? renderLocalizedString(site.name) : 'Unknown';
+                        const generatorName = generator ? renderLocalizedString(generator.name) : 'Unknown';
+                        const vendorName = vendor ? renderLocalizedString(vendor.name) : 'Not assigned';
+                        
                         return (
                           <tr key={item.id} className="border-b hover:bg-muted/50">
                             <td className="py-3 px-4 font-medium">{item.scheduledDate}</td>
                             <td className="py-3 px-4">
                               <Link to={`/sites/${site?.id}`} className="hover:underline">
-                                {site ? renderLocalizedString(site.name) : 'Unknown'}
+                                {siteName}
                               </Link>
                             </td>
                             <td className="py-3 px-4">
                               <Link to={`/generators/${generator?.id}`} className="hover:underline">
-                                {generator ? renderLocalizedString(generator.name) : 'Unknown'}
+                                {generatorName}
                               </Link>
                             </td>
                             <td className="py-3 px-4">{item.amount}L</td>
-                            <td className="py-3 px-4">{vendor ? renderLocalizedString(vendor.name) : 'Not assigned'}</td>
+                            <td className="py-3 px-4">{vendorName}</td>
                             <td className="py-3 px-4">
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
                                 {item.status}
@@ -336,7 +344,7 @@ const PlanningPage = () => {
           <Calendar className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
           <h3 className="text-lg font-medium mb-2">No Plans Found</h3>
           <p className="text-muted-foreground mb-6">
-            There are no fuel plans created for {selectedZone === 'all' ? 'any zone' : zones.find(z => z.id === selectedZone)?.name} in {monthOptions.find(m => m.value === selectedMonth)?.label}.
+            There are no fuel plans created for {selectedZone === 'all' ? 'any zone' : renderLocalizedString(zones.find(z => z.id === selectedZone)?.name || 'Unknown Zone')} in {monthOptions.find(m => m.value === selectedMonth)?.label}.
           </p>
           <Button onClick={handleAddPlan}>
             <Plus className="h-4 w-4 mr-1" />

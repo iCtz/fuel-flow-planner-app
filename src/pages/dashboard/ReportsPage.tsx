@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -197,14 +198,18 @@ const ReportsPage = () => {
                       // Random consumption data for demo
                       const consumption = 100 + Math.floor(Math.random() * 400);
                       
+                      // Get string representations
+                      const siteName = renderLocalizedString(site.name);
+                      const zoneName = zone ? renderLocalizedString(zone.name) : 'Unknown';
+                      
                       return (
                         <tr key={site.id} className="border-b">
                           <td className="py-2 px-4">
                             <Link to={`/sites/${site.id}`} className="hover:underline">
-                              {renderLocalizedString(site.name)}
+                              {siteName}
                             </Link>
                           </td>
-                          <td className="py-2 px-4">{zone ? renderLocalizedString(zone.name) : 'Unknown'}</td>
+                          <td className="py-2 px-4">{zoneName}</td>
                           <td className="py-2 px-4 text-right">{consumption}L</td>
                         </tr>
                       );
@@ -334,16 +339,20 @@ const ReportsPage = () => {
                   {generators.slice(0, 10).map((generator) => {
                     const site = sites.find(s => s.id === generator.siteId);
                     
+                    // Get string representation
+                    const generatorName = renderLocalizedString(generator.name);
+                    const siteName = site ? renderLocalizedString(site.name) : 'Unknown';
+                    
                     return (
                       <tr key={generator.id} className="border-b">
                         <td className="py-2 px-4">
                           <Link to={`/generators/${generator.id}`} className="hover:underline">
-                            {generator.name}
+                            {generatorName}
                           </Link>
                         </td>
                         <td className="py-2 px-4">
                           <Link to={`/sites/${generator.siteId}`} className="hover:underline">
-                            {site?.name || 'Unknown'}
+                            {siteName}
                           </Link>
                         </td>
                         <td className="py-2 px-4">
@@ -467,17 +476,21 @@ const ReportsPage = () => {
                     const site = sites.find(s => s.id === report.siteId);
                     const generator = generators.find(g => g.id === report.generatorId);
                     
+                    // Get string representations
+                    const siteName = site ? renderLocalizedString(site.name) : 'Unknown';
+                    const generatorName = generator ? renderLocalizedString(generator.name) : 'Unknown';
+                    
                     return (
                       <tr key={report.id} className="border-b">
                         <td className="py-2 px-4">{report.reportDate}</td>
                         <td className="py-2 px-4">
                           <Link to={`/sites/${report.siteId}`} className="hover:underline">
-                            {site?.name || 'Unknown'}
+                            {siteName}
                           </Link>
                         </td>
                         <td className="py-2 px-4">
                           <Link to={`/generators/${report.generatorId}`} className="hover:underline">
-                            {generator?.name || 'Unknown'}
+                            {generatorName}
                           </Link>
                         </td>
                         <td className="py-2 px-4">

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -59,10 +60,14 @@ const SiteDetailsPage = () => {
     return null; // Loading or not found
   }
 
+  // Create string representation of site name for title
+  const siteNameStr = renderLocalizedString(site.name);
+  const zoneNameStr = zone ? renderLocalizedString(zone.name) : 'Unknown Zone';
+
   return (
     <DashboardLayout 
-      title={renderLocalizedString(site.name)}
-      description={`Site in ${zone ? renderLocalizedString(zone.name) : 'Unknown Zone'}`}
+      title={siteNameStr}
+      description={`Site in ${zoneNameStr}`}
       actions={
         <>
           <Button variant="outline" size="sm" asChild>
@@ -225,10 +230,12 @@ const SiteDetailsPage = () => {
                 {siteReports.length > 0 ? (
                   siteReports.map(report => {
                     const generator = generators.find(g => g.id === report.generatorId);
+                    // Ensure we have a string for generator name
+                    const generatorNameStr = generator ? renderLocalizedString(generator.name) : "Unknown";
                     return (
                       <tr key={report.id} className="border-b">
                         <td className="py-3 px-4 font-medium">{report.reportDate}</td>
-                        <td className="py-3 px-4">{generator?.name || "Unknown"}</td>
+                        <td className="py-3 px-4">{generatorNameStr}</td>
                         <td className="py-3 px-4">
                           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
                             {report.status}
