@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FuelGauge } from "@/components/Dashboard/FuelGauge";
 import { Generator, Tank } from "@/types/generators";
 import { Calendar, Droplet, FileText, MapPin, Settings, Wrench } from "lucide-react";
+import { renderLocalizedString } from "@/utils/localizedString";
 
 const GeneratorDetailsPage = () => {
   const { generatorId } = useParams();
@@ -39,7 +39,7 @@ const GeneratorDetailsPage = () => {
       
       if (generatorData) {
         setGenerator(generatorData);
-        document.title = `Fuel Flow Planner - ${generatorData.name}`;
+        document.title = `Fuel Flow Planner - ${renderLocalizedString(generatorData.name)}`;
         
         // Get site and zone
         const siteData = sites.find(s => s.id === generatorData.siteId);
@@ -76,8 +76,8 @@ const GeneratorDetailsPage = () => {
 
   return (
     <DashboardLayout 
-      title={generator.name}
-      description={`Generator at ${site.name} in ${zone?.name || 'Unknown Zone'}`}
+      title={renderLocalizedString(generator.name)}
+      description={`Generator at ${renderLocalizedString(site.name)} in ${zone ? renderLocalizedString(zone.name) : 'Unknown Zone'}`}
       actions={
         <>
           <Button variant="outline" size="sm" asChild>
@@ -102,7 +102,7 @@ const GeneratorDetailsPage = () => {
               <MapPin className="h-4 w-4 text-fuel-accent" />
               <div>
                 <p className="text-sm font-medium">Location</p>
-                <p className="text-sm text-muted-foreground">{generator.location}</p>
+                <p className="text-sm text-muted-foreground">{renderLocalizedString(generator.location)}</p>
               </div>
             </div>
             
@@ -210,7 +210,7 @@ const GeneratorDetailsPage = () => {
         <TabsContent value="tanks" className="mt-6">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {generator.tanks && generator.tanks.map((tank: Tank) => (
-              <DashboardCard key={tank.id} title={tank.name}>
+              <DashboardCard key={tank.id} title={renderLocalizedString(tank.name || `Tank ${tank.id}`)}>
                 <div className="space-y-4">
                   <div className="flex items-center justify-center py-2">
                     <FuelGauge 

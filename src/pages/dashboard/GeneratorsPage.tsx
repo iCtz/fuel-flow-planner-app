@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { GeneratorCard } from "@/components/Dashboard/GeneratorCard";
 import { Input } from "@/components/ui/input";
 import { Generator } from "@/types/generators";
-import { renderLocalizedString } from "@/utils/localizedString";
+import { renderLocalizedString, safeStringOperation } from "@/utils/localizedString";
 
 const GeneratorsPage = () => {
   const { toast } = useToast();
@@ -35,8 +35,8 @@ const GeneratorsPage = () => {
     if (searchTerm) {
       const lowerSearch = searchTerm.toLowerCase();
       filtered = filtered.filter(generator => 
-        generator.name.toLowerCase().includes(lowerSearch) || 
-        generator.location.toLowerCase().includes(lowerSearch)
+        safeStringOperation(generator.name, str => str.toLowerCase()).includes(lowerSearch) || 
+        safeStringOperation(generator.location, str => str.toLowerCase()).includes(lowerSearch)
       );
     }
     

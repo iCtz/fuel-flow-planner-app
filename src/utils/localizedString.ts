@@ -27,3 +27,12 @@ export const renderLocalizedString = (text: string | LocalizedString | undefined
   const currentLang = i18n.language || 'en';
   return getLocalizedString(text, currentLang);
 };
+
+// Helper to handle string operations safely on LocalizedString
+export const safeStringOperation = (
+  text: string | LocalizedString | undefined,
+  operation: (str: string) => string
+): string => {
+  const stringValue = renderLocalizedString(text);
+  return operation(stringValue);
+};

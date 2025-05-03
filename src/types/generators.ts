@@ -14,12 +14,16 @@ export type Generator = {
   nextScheduledRefill?: string; // ISO date string
   alerts?: number;
   needsMaintenance?: boolean;
+  consumption?: number; // liters per day
 };
 
 export type Tank = {
   id: string;
   generatorId: string;
+  name?: string | LocalizedString; // Added name property
   capacity: number; // liters
   currentLevel: number; // liters
   lastMeasurement?: string; // ISO date string
+  lastReading?: string; // ISO date string
+  gauge?: string; // Type of gauge (Digital, Analog, etc)
 };
