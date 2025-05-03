@@ -1,5 +1,5 @@
 
-import { Generator } from "@/types/hierarchy";
+import { Generator } from "@/types/generators";
 import { GeneratorCard } from "@/components/Dashboard/GeneratorCard";
 
 interface SiteGeneratorsTabProps {

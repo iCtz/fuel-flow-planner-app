@@ -2,9 +2,11 @@
 import { DashboardCard } from "@/components/Dashboard/DashboardCard";
 import { Building, Edit, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Site, Zone, Vendor, Generator } from "@/types/hierarchy";
+import { Site, Zone, Vendor } from "@/types/hierarchy";
+import { Generator } from "@/types/generators";
 import { useToast } from "@/hooks/use-toast";
 import { renderLocalizedString } from "@/utils/localizedString";
+import { SiteActions } from "./SiteActions";
 
 interface SiteDetailsCardsProps {
   site: Site;
@@ -110,38 +112,3 @@ export function SiteDetailsCards({ site, zone, vendor, siteGenerators }: SiteDet
     </div>
   );
 }
-
-// Separate component for site actions
-function SiteActions({ siteId }: { siteId: string }) {
-  const { toast } = useToast();
-  
-  return (
-    <div className="space-y-2">
-      <Button variant="outline" className="w-full justify-start" asChild>
-        <Link to={`/planning?siteId=${siteId}`}>
-          <Calendar className="h-4 w-4 mr-2" />
-          View Refill Schedule
-        </Link>
-      </Button>
-      <Button variant="outline" className="w-full justify-start" asChild>
-        <Link to={`/field-reports?siteId=${siteId}`}>
-          <ClipboardList className="h-4 w-4 mr-2" />
-          View Field Reports
-        </Link>
-      </Button>
-      <Button variant="outline" className="w-full justify-start" onClick={() => {
-        toast({
-          title: "Assign Vendor",
-          description: "This feature will be available soon."
-        });
-      }}>
-        <Building className="h-4 w-4 mr-2" />
-        Assign Vendor
-      </Button>
-    </div>
-  );
-}
-
-// Add missing imports at the top
-import { Link } from "react-router-dom";
-import { Calendar, ClipboardList } from "lucide-react";

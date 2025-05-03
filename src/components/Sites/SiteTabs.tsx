@@ -2,7 +2,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SiteGeneratorsTab } from "./SiteGeneratorsTab";
 import { SiteFieldReportsTab } from "./SiteFieldReportsTab";
-import { Generator } from "@/types/hierarchy";
+import { Generator } from "@/types/generators";
 
 interface SiteTabsProps {
   siteGenerators: Generator[];

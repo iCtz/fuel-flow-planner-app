@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { renderLocalizedString } from "@/utils/localizedString";
-import { Generator } from "@/types/hierarchy";
+import { Generator } from "@/types/generators";
 
 interface SiteFieldReportsTabProps {
   reports: any[];

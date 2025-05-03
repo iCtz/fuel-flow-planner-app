@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { sites, zones, vendors, generators, fieldReports } from "@/data/mockData";
-import { Site, Zone, Vendor, Generator } from "@/types/hierarchy";
+import { Site, Zone, Vendor } from "@/types/hierarchy";
+import { Generator } from "@/types/generators";
 import { renderLocalizedString } from "@/utils/localizedString";
 
 export function useSiteDetails(siteId: string | undefined) {
