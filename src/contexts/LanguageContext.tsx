@@ -1,6 +1,6 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 type LanguageContextType = {
   currentLanguage: string;
@@ -15,7 +15,7 @@ const LanguageContext = createContext<LanguageContextType>({
 export const useLanguage = () => useContext(LanguageContext);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { i18n } = useTranslation();
+  // Initialize with i18n.language directly instead of using useTranslation
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language || 'en');
 
   const changeLanguage = (lang: string) => {
@@ -34,6 +34,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = currentLanguage;
     document.documentElement.classList.add(`lang-${currentLanguage}`);
+    
+    // Set up a listener for language changes
+    const handleLanguageChanged = () => {
+      setCurrentLanguage(i18n.language);
+    };
+    
+    i18n.on('languageChanged', handleLanguageChanged);
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChanged);
+    };
   }, []);
 
   return (

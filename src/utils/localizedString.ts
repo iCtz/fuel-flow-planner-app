@@ -1,6 +1,7 @@
 
 import { LocalizedString } from "@/types/hierarchy";
 import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "@/i18n";
 
 // Helper function to get string value from potentially localized content
 export const getLocalizedString = (
@@ -19,4 +20,10 @@ export const useLocalizedString = () => {
   return (text: string | LocalizedString | undefined): string => {
     return getLocalizedString(text, currentLanguage);
   };
+};
+
+// Function to use when rendering inside components that can't handle complex types
+export const renderLocalizedString = (text: string | LocalizedString | undefined): string => {
+  const currentLang = i18n.language || 'en';
+  return getLocalizedString(text, currentLang);
 };

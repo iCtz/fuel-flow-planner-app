@@ -1,4 +1,7 @@
 
+// Import i18n configuration first
+import "./i18n";
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,8 +23,6 @@ import VendorsPage from "./pages/dashboard/VendorsPage";
 import ReportsPage from "./pages/dashboard/ReportsPage";
 import FieldReportsPage from "./pages/dashboard/FieldReportsPage";
 
-// Import i18n configuration
-import "./i18n";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
 const queryClient = new QueryClient();

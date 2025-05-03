@@ -3,13 +3,16 @@ import { GeneratorCard } from "@/components/Dashboard/GeneratorCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useLocalizedString } from "@/utils/localizedString";
+import { Generator } from "@/types/generators";
 
 interface GeneratorsTabProps {
-  generators: any[];
+  generators: Generator[];
 }
 
 export function GeneratorsTab({ generators }: GeneratorsTabProps) {
   const { t } = useTranslation();
+  const getLocalizedString = useLocalizedString();
   
   return (
     <div className="space-y-6">
