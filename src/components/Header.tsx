@@ -28,6 +28,7 @@ export function Header() {
     { name: t("common.planning"), path: "/planning", icon: <CalendarDays className="h-4 w-4" /> },
     { name: t("common.vendors"), path: "/vendors", icon: <Users className="h-4 w-4" /> },
     { name: t("common.reports"), path: "/reports", icon: <Bell className="h-4 w-4" /> },
+    { name: t("common.users"), path: "/users", icon: <User className="h-4 w-4" /> },
   ];
 
   return (
@@ -76,8 +77,10 @@ export function Header() {
           <Button size="icon" variant="ghost">
             <Bell className="h-4 w-4" />
           </Button>
-          <Button size="icon" variant="ghost">
-            <User className="h-4 w-4" />
+          <Button size="icon" variant="ghost" asChild>
+            <Link to="/users">
+              <User className="h-4 w-4" />
+            </Link>
           </Button>
           <Button size="icon" variant="ghost">
             <Settings className="h-4 w-4" />

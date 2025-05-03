@@ -22,6 +22,8 @@ import PlanningPage from "./pages/dashboard/PlanningPage";
 import VendorsPage from "./pages/dashboard/VendorsPage";
 import ReportsPage from "./pages/dashboard/ReportsPage";
 import FieldReportsPage from "./pages/dashboard/FieldReportsPage";
+import UsersPage from "./pages/dashboard/UsersPage";
+import UserDetailsPage from "./pages/dashboard/UserDetailsPage";
 
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -47,6 +49,8 @@ const App = () => (
             <Route path="/vendors" element={<VendorsPage />} />
             <Route path="/reports" element={<ReportsPage />} />
             <Route path="/field-reports" element={<FieldReportsPage />} />
+            <Route path="/users" element={<UsersPage />} />
+            <Route path="/users/:userId" element={<UserDetailsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
