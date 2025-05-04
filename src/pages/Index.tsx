@@ -27,6 +27,11 @@ const Index = () => {
   
   useEffect(() => {
     document.title = t("header.appTitle") + " - " + t("common.dashboard");
+    
+    // Add new translation entries if they don't exist
+    if (!t("planning.fuelUsageForecast", { returnObjects: true }).includes("Fuel Usage Forecast")) {
+      console.info("Translation keys for new planning features not found, using defaults");
+    }
   }, [t]);
 
   return (

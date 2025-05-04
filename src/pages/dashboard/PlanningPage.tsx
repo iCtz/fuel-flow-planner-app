@@ -10,6 +10,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { renderLocalizedString } from "@/utils/localizedString";
+import { FuelUsageForecast } from "@/components/Planning/FuelUsageForecast";
+import { CalendarIntegration } from "@/components/Planning/CalendarIntegration";
 
 const PlanningPage = () => {
   const { toast } = useToast();
@@ -140,6 +142,12 @@ const PlanningPage = () => {
             </Button>
           </div>
         </div>
+      </div>
+
+      {/* Advanced Planning Features */}
+      <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <FuelUsageForecast />
+        <CalendarIntegration />
       </div>
       
       {currentPlans.length > 0 ? (
