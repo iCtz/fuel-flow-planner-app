@@ -2,10 +2,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { 
-  Chart as ChartIcon, 
+  ChartLine, 
   CalendarDays,
   ChartBar,
-  ChartLine
+  ChartPie
 } from "lucide-react";
 import { DashboardCard } from "@/components/Dashboard/DashboardCard";
 import {
@@ -163,7 +163,7 @@ export function FuelUsageForecast() {
             <Tabs defaultValue={chartType} onValueChange={setChartType} className="w-full">
               <TabsList className="grid grid-cols-3 w-full">
                 <TabsTrigger value="line"><ChartLine className="h-3 w-3 mr-1" /> {t("planning.line")}</TabsTrigger>
-                <TabsTrigger value="area"><ChartIcon className="h-3 w-3 mr-1" /> {t("planning.area")}</TabsTrigger>
+                <TabsTrigger value="area"><ChartPie className="h-3 w-3 mr-1" /> {t("planning.area")}</TabsTrigger>
                 <TabsTrigger value="bar"><ChartBar className="h-3 w-3 mr-1" /> {t("planning.bar")}</TabsTrigger>
               </TabsList>
             </Tabs>
@@ -319,3 +319,4 @@ export function FuelUsageForecast() {
     </Card>
   );
 }
+

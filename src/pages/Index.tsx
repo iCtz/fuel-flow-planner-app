@@ -28,8 +28,9 @@ const Index = () => {
   useEffect(() => {
     document.title = t("header.appTitle") + " - " + t("common.dashboard");
     
-    // Add new translation entries if they don't exist
-    if (!t("planning.fuelUsageForecast", { returnObjects: true }).includes("Fuel Usage Forecast")) {
+    // Check if translation keys exist without using includes
+    const translationObj = t("planning.fuelUsageForecast", { returnObjects: true });
+    if (typeof translationObj === 'string' && translationObj === "planning.fuelUsageForecast") {
       console.info("Translation keys for new planning features not found, using defaults");
     }
   }, [t]);
