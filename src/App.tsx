@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -38,6 +38,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/planning" element={<PlanningPage />} />
             <Route path="/regions" element={<RegionsPage />} />
             <Route path="/zones" element={<ZonesPage />} />
             <Route path="/zones/:zoneId" element={<ZoneDetailsPage />} />
@@ -45,7 +46,6 @@ const App = () => (
             <Route path="/sites/:siteId" element={<SiteDetailsPage />} />
             <Route path="/generators" element={<GeneratorsPage />} />
             <Route path="/generators/:generatorId" element={<GeneratorDetailsPage />} />
-            <Route path="/planning" element={<PlanningPage />} />
             <Route path="/vendors" element={<VendorsPage />} />
             <Route path="/reports" element={<ReportsPage />} />
             <Route path="/field-reports" element={<FieldReportsPage />} />

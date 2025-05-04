@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Fuel, AlertCircle, Settings, Power } from "lucide-react";
 import { Generator } from "@/types/generators";
 import { renderLocalizedString } from "@/utils/localizedString";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface GeneratorCardProps {
   generator: Generator;
@@ -72,6 +74,29 @@ export function GeneratorCard({ generator }: GeneratorCardProps) {
                   <span>Maintenance</span>
                 </div>
               )}
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 mt-4 pt-2 border-t">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="text-xs h-8"
+                asChild
+              >
+                <Link to={`/planning?generatorId=${generator.id}`}>
+                  Plan Refill
+                </Link>
+              </Button>
+              <Button 
+                variant="secondary" 
+                size="sm" 
+                className="text-xs h-8"
+                asChild
+              >
+                <Link to={`/generators/${generator.id}`}>
+                  Details
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
