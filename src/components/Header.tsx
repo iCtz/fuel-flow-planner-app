@@ -19,13 +19,14 @@ export function Header() {
     return location.pathname === path;
   };
 
+  // Reordered navigation items to give planning more prominence
   const navItems = [
     { name: t("common.dashboard"), path: "/", icon: <LayoutDashboard className="h-4 w-4" /> },
+    { name: t("common.planning"), path: "/planning", icon: <CalendarDays className="h-4 w-4" />, highlighted: true },
     { name: t("common.regions"), path: "/regions", icon: <Globe className="h-4 w-4" /> },
     { name: t("common.zones"), path: "/zones", icon: <Map className="h-4 w-4" /> },
     { name: t("common.sites"), path: "/sites", icon: <Box className="h-4 w-4" /> },
     { name: t("common.generators"), path: "/generators", icon: <Fuel className="h-4 w-4" /> },
-    { name: t("common.planning"), path: "/planning", icon: <CalendarDays className="h-4 w-4" /> },
     { name: t("common.vendors"), path: "/vendors", icon: <Users className="h-4 w-4" /> },
     { name: t("common.reports"), path: "/reports", icon: <Bell className="h-4 w-4" /> },
     { name: t("common.users"), path: "/users", icon: <User className="h-4 w-4" /> },
@@ -62,12 +63,16 @@ export function Header() {
                 to={item.path}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary flex items-center gap-2",
-                  isActive(item.path) ? "text-primary" : "text-muted-foreground"
+                  isActive(item.path) ? "text-primary" : "text-muted-foreground",
+                  item.highlighted && "font-bold text-primary"
                 )}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.icon}
                 {item.name}
+                {item.highlighted && (
+                  <span className="hidden md:inline-flex ml-1 h-2 w-2 rounded-full bg-primary"></span>
+                )}
               </Link>
             ))}
           </div>
@@ -100,12 +105,16 @@ export function Header() {
                   to={item.path}
                   className={cn(
                     "text-sm font-medium transition-colors hover:text-primary flex items-center gap-2 p-2 rounded-md",
-                    isActive(item.path) ? "bg-secondary text-primary" : "text-muted-foreground"
+                    isActive(item.path) ? "bg-secondary text-primary" : "text-muted-foreground",
+                    item.highlighted && "font-bold text-primary"
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.icon}
                   {item.name}
+                  {item.highlighted && (
+                    <span className="inline-flex ml-1 h-2 w-2 rounded-full bg-primary"></span>
+                  )}
                 </Link>
               ))}
             </div>

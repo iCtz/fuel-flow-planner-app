@@ -40,8 +40,10 @@ const Index = () => {
         </Button>
       }
     >
-      {/* Planning section as main focus */}
-      <PlanningOverview />
+      {/* Planning section highlighted with a stronger border */}
+      <div className="border-2 border-primary rounded-lg p-4 mb-8 bg-primary/5">
+        <PlanningOverview />
+      </div>
 
       {/* Dashboard quick overview sections */}
       <DashboardTabs
