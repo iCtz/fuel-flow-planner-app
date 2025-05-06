@@ -1,5 +1,4 @@
-
-import { Region, Zone, Site, User, Vendor, FuelPlan, FieldReport } from "@/types/hierarchy";
+import { Region, Zone, Site, User, Vendor, FuelPlan, FieldReport, FuelBudget, BudgetTransaction } from "@/types/hierarchy";
 import { Generator as FuelGenerator, Tank } from "@/types/generators";
 import { FuelEvent } from "@/types/fuelEvents";
 
@@ -468,4 +467,101 @@ export const consumptionData = [
   { date: "2025-04-15", amount: 48 },
   { date: "2025-04-22", amount: 61 },
   { date: "2025-04-29", amount: 55 }
+];
+
+// New mock data for fuel budgets
+export const fuelBudgets: FuelBudget[] = [
+  {
+    id: "budget-1",
+    zoneId: "zone-1",
+    month: "2025-05",
+    allocatedAmount: 5000,
+    usedAmount: 1200,
+    status: "active",
+    createdBy: "user-1",
+    updatedAt: "2025-05-01T08:00:00Z",
+    notes: "Monthly budget for Zone A"
+  },
+  {
+    id: "budget-2",
+    zoneId: "zone-2",
+    month: "2025-05",
+    allocatedAmount: 3500,
+    usedAmount: 800,
+    status: "active",
+    createdBy: "user-2",
+    updatedAt: "2025-05-01T09:15:00Z"
+  },
+  {
+    id: "budget-3",
+    zoneId: "zone-1",
+    month: "2025-04",
+    allocatedAmount: 4800,
+    usedAmount: 4750,
+    status: "closed",
+    createdBy: "user-1",
+    updatedAt: "2025-04-30T23:59:59Z",
+    notes: "April budget completed within allocation"
+  }
+];
+
+export const budgetTransactions: BudgetTransaction[] = [
+  {
+    id: "btx-1",
+    budgetId: "budget-1",
+    amount: 5000,
+    type: "allocation",
+    date: "2025-05-01",
+    notes: "Initial budget allocation"
+  },
+  {
+    id: "btx-2",
+    budgetId: "budget-1",
+    amount: 500,
+    type: "expense",
+    date: "2025-05-10",
+    relatedPlanItemId: "planitem-1",
+    notes: "Expense for scheduled refill"
+  },
+  {
+    id: "btx-3",
+    budgetId: "budget-1",
+    amount: 700,
+    type: "expense",
+    date: "2025-05-12",
+    relatedPlanItemId: "planitem-2",
+    notes: "Expense for emergency refill"
+  },
+  {
+    id: "btx-4",
+    budgetId: "budget-2",
+    amount: 3500,
+    type: "allocation",
+    date: "2025-05-01",
+    notes: "Initial budget allocation"
+  },
+  {
+    id: "btx-5",
+    budgetId: "budget-2",
+    amount: 800,
+    type: "expense",
+    date: "2025-05-15",
+    relatedPlanItemId: "planitem-3"
+  },
+  {
+    id: "btx-6",
+    budgetId: "budget-3",
+    amount: 4800,
+    type: "allocation",
+    date: "2025-04-01",
+    notes: "April budget allocation"
+  },
+  {
+    id: "btx-7",
+    budgetId: "budget-3",
+    amount: 500,
+    type: "adjustment",
+    date: "2025-04-15",
+    notes: "Mid-month budget adjustment"
+  }
 ];

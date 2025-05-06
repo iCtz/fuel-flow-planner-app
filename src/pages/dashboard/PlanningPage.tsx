@@ -12,6 +12,7 @@ import { PlanningOverviewCard } from "@/components/Planning/PlanningOverviewCard
 import { PlanningCalendarView } from "@/components/Planning/PlanningCalendarView";
 import { PlanningDetailsTable } from "@/components/Planning/PlanningDetailsTable";
 import { EmptyPlanningState } from "@/components/Planning/EmptyPlanningState";
+import { MonthlyFuelBudget } from "@/components/Planning/Budget/MonthlyFuelBudget";
 import { usePlanningPage } from "@/hooks/usePlanningPage";
 
 const PlanningPage = () => {
@@ -53,6 +54,15 @@ const PlanningPage = () => {
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <FuelUsageForecast />
         <CalendarIntegration />
+      </div>
+      
+      {/* Monthly Fuel Budget Feature */}
+      <div className="mb-8">
+        <MonthlyFuelBudget 
+          selectedZone={selectedZone}
+          selectedMonth={selectedMonth}
+          monthOptions={monthOptions}
+        />
       </div>
       
       {currentPlans.length > 0 ? (

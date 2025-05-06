@@ -88,3 +88,26 @@ export type TankReading = {
   timestamp: string;
   notes?: string | LocalizedString;
 };
+
+// New Budget Types
+export type FuelBudget = {
+  id: string;
+  zoneId: string;
+  month: string; // Format: "YYYY-MM"
+  allocatedAmount: number;
+  usedAmount: number;
+  status: "active" | "closed" | "exceeded";
+  createdBy: string;
+  updatedAt: string;
+  notes?: string | LocalizedString;
+};
+
+export type BudgetTransaction = {
+  id: string;
+  budgetId: string;
+  amount: number;
+  type: "allocation" | "adjustment" | "expense";
+  date: string;
+  relatedPlanItemId?: string;
+  notes?: string | LocalizedString;
+};

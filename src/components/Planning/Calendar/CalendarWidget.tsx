@@ -21,12 +21,12 @@ export function CalendarWidget({
   const { t } = useTranslation();
   
   return (
-    <div>
+    <div className="w-full">
       <Calendar
         mode="single"
         selected={date}
         onSelect={onDateChange}
-        className="rounded-md border pointer-events-auto"
+        className="rounded-md border pointer-events-auto w-full"
         modifiers={{
           hasEvents: getDaysWithEvents
         }}
