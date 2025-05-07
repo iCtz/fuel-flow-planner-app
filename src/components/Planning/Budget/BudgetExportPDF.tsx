@@ -1,10 +1,10 @@
 
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { FileSave } from "lucide-react";
+import { Save } from "lucide-react";
 import { FuelBudget, BudgetTransaction } from "@/types/hierarchy";
 import { useToast } from "@/hooks/use-toast";
-import { toPDF } from "react-to-pdf";
+import { usePDF } from "react-to-pdf";
 import { renderLocalizedString } from "@/utils/localizedString";
 
 interface BudgetExportPDFProps {
@@ -17,18 +17,19 @@ interface BudgetExportPDFProps {
 export function BudgetExportPDF({ budget, transactions, zoneName, monthLabel }: BudgetExportPDFProps) {
   const { toast } = useToast();
   const reportRef = useRef<HTMLDivElement>(null);
+  const { toPDF, targetRef } = usePDF({
+    filename: `fuel-budget-${zoneName}-${monthLabel}.pdf`,
+    page: {
+      margin: 20,
+      format: 'a4',
+    }
+  });
 
   const handleExport = async () => {
     if (!reportRef.current) return;
     
     try {
-      await toPDF(reportRef, {
-        filename: `fuel-budget-${zoneName}-${monthLabel}.pdf`,
-        page: {
-          margin: 20,
-          format: 'a4',
-        }
-      });
+      await toPDF();
       
       toast({
         title: "Export Successful",
@@ -47,13 +48,13 @@ export function BudgetExportPDF({ budget, transactions, zoneName, monthLabel }: 
   return (
     <>
       <Button variant="outline" size="sm" onClick={handleExport}>
-        <FileSave className="h-4 w-4 mr-1" />
+        <Save className="h-4 w-4 mr-1" />
         Export PDF
       </Button>
       
       {/* Hidden div for PDF content - will be generated on export */}
       <div className="hidden">
-        <div ref={reportRef} className="p-8 bg-white">
+        <div ref={targetRef} className="p-8 bg-white">
           <div className="text-center mb-6">
             <h1 className="text-2xl font-bold mb-2">Fuel Budget Report</h1>
             <h2 className="text-xl">{zoneName} - {monthLabel}</h2>

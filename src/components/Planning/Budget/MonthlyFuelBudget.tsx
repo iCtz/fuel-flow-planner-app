@@ -10,6 +10,7 @@ import { Plus, DollarSign } from "lucide-react";
 import { FuelBudgetCard } from "./FuelBudgetCard";
 import { BudgetTransactionsList } from "./BudgetTransactionsList";
 import { BudgetManagementForm } from "./BudgetManagementForm";
+import { BudgetExportPDF } from "./BudgetExportPDF";
 import { renderLocalizedString } from "@/utils/localizedString";
 import { useToast } from "@/hooks/use-toast";
 
@@ -114,11 +115,19 @@ export function MonthlyFuelBudget({
                 </TabsList>
                 
                 <TabsContent value="overview">
-                  <FuelBudgetCard 
-                    budget={budget} 
-                    zoneName={getZoneName(budget.zoneId)}
-                    monthLabel={currentMonthLabel}
-                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <FuelBudgetCard 
+                      budget={budget} 
+                      zoneName={getZoneName(budget.zoneId)}
+                      monthLabel={currentMonthLabel}
+                    />
+                    <BudgetExportPDF
+                      budget={budget}
+                      transactions={getTransactionsForBudget(budget.id)}
+                      zoneName={getZoneName(budget.zoneId)}
+                      monthLabel={currentMonthLabel}
+                    />
+                  </div>
                 </TabsContent>
                 
                 <TabsContent value="transactions">
