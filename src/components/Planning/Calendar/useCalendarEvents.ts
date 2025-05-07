@@ -1,15 +1,17 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { fuelPlans, sites, generators } from "@/data/mockData";
 import { renderLocalizedString } from "@/utils/localizedString";
 
-interface CalendarEvent {
+export interface CalendarEvent {
   id: string;
   title: string;
   date: Date;
   type: string;
   amount: number;
   status: string;
+  siteId?: string;
+  generatorId?: string;
 }
 
 export function useCalendarEvents() {
@@ -17,26 +19,33 @@ export function useCalendarEvents() {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   
   // Calculate the date one month from now
-  const oneMonthFromNow = new Date();
-  oneMonthFromNow.setMonth(oneMonthFromNow.getMonth() + 1);
+  const oneMonthFromNow = useMemo(() => {
+    const future = new Date();
+    future.setMonth(future.getMonth() + 1);
+    return future;
+  }, []);
   
   // Collect all refill events from the fuel plans
-  const allEvents = fuelPlans.flatMap(plan => 
-    plan.planItems.map(item => {
-      const site = sites.find(s => s.id === item.siteId);
-      const generator = generators.find(g => g.id === item.generatorId);
-      const dateObj = new Date(item.scheduledDate);
-      
-      return {
-        id: item.id,
-        title: `Refill ${renderLocalizedString(site?.name || "")} - ${renderLocalizedString(generator?.name || "")}`,
-        date: dateObj,
-        type: 'refill',
-        amount: item.amount,
-        status: item.status
-      };
-    })
-  );
+  const allEvents: CalendarEvent[] = useMemo(() => {
+    return fuelPlans.flatMap(plan => 
+      plan.planItems.map(item => {
+        const site = sites.find(s => s.id === item.siteId);
+        const generator = generators.find(g => g.id === item.generatorId);
+        const dateObj = new Date(item.scheduledDate);
+        
+        return {
+          id: item.id,
+          title: `Refill ${renderLocalizedString(site?.name || "")} - ${renderLocalizedString(generator?.name || "")}`,
+          date: dateObj,
+          type: 'refill',
+          amount: item.amount,
+          status: item.status,
+          siteId: item.siteId,
+          generatorId: item.generatorId
+        };
+      })
+    );
+  }, []);
   
   // Find events for the selected date
   const findEventsForDate = (selectedDate: Date | undefined) => {
@@ -82,9 +91,9 @@ export function useCalendarEvents() {
   return {
     date,
     events,
+    allEvents,
     oneMonthFromNow,
     handleDateChange,
-    getDaysWithEvents,
-    allEvents
+    getDaysWithEvents
   };
 }

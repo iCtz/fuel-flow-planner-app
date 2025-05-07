@@ -30,7 +30,7 @@ export function CalendarIntegration() {
       </CardHeader>
       <CardContent>
         <div className="grid md:grid-cols-2 gap-6">
-          <div>
+          <div className="space-y-4">
             <CalendarWidget 
               date={date}
               onDateChange={handleDateChange}

@@ -5,19 +5,11 @@ import { CalendarIcon, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-
-interface Event {
-  id: string;
-  title: string;
-  date: Date;
-  type: string;
-  amount: number;
-  status: string;
-}
+import { CalendarEvent } from "./useCalendarEvents";
 
 interface EventsListProps {
   date: Date | undefined;
-  events: Event[];
+  events: CalendarEvent[];
 }
 
 export function EventsList({ date, events }: EventsListProps) {
