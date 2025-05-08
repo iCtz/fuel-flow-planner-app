@@ -1,0 +1,64 @@
+i need you to help me design a flutter/dart app (fuel plan tracker), which is about creating & managing monthly plans for refilling deisel generators' tanks with fuel. these deisel generators are the main source electricity/energy of a huge number of company's sites, which are located across the country. the design evokes professional energy management dashboards with a clean, modern interface. Drawing inspiration from industrial monitoring systems and fuel management softwares. the app is intended to run on Android, iOS, & web. The app will connect to a backend (out of the scope of this project), through REST APIs. All pages are interconnected with proper permissions and navigation links, allowing users to easily move between different sections of the application. The system now supports the entire workflow - from supervisors creating monthly refill plans to field teams collecting data and submitting reports. Finally the main foucs and core of the app is around the planning section. All other section are secondary and have support role to the planning section.
+
+for project-specific guidelines/rules are as follow:
+	- The company is applying the following hierarchy:
+		1-the country is divided into regions, and each region is divided into a number of zones.
+		2-each zone has a number of sites. 
+		3-each zone has a one supervisor, and a number of field teams to admin, manage and track sites in the zones.
+		3-each site has between 1 and 10 generators.
+		4-each generator has between 1 and 4 external tanks.
+	5-each tank has its own measurement tools to track fuel level.
+	- Zones' supervisors are required to create a plan each month for refilling all generators' tanks for all sites.
+	- field teams will collect data of each site and input it in the site. such data will need to be reviewed by supervisors before confirming the data.
+	- generators tanks will be filled by 3rd party fuel vendors. supervisors should assign a vendor to each site.
+	- each vendor can refill a single or multiple sites.
+	- vendors can be sharable across zones or limited to a certain zone.
+
+for project-specific technical programming notes are as follow:
+	- Programming Architecture is Clean code with BloC architecture
+	- Tests are needed with coverage more than 75%
+	- App should support online & offline connection (save now, sync later).
+	- code should be more maintainable & decoupled
+
+The app should implement the followin features:
+	- Interactive and A comprehensive dashboard with tabs for 
+		1-general overview
+		2-fuel planning status
+		3-fuel planning calendar
+		4-zones status
+		5-sites status
+		6-generators status
+		7-generators' tanks status
+	- A planning system for monthly fuel refills
+    - Field reports tracking and approval workflow
+    - Fuel planning calendar interface & integration which will shows all scheduled refills and allows synchronizing events with external calendar apps.
+    - Fill/refill scheduling and tracking
+	- Detailed pages for each level of the hierarchy (regions, zones, sites, generators, tanks)
+    - Region management (add/edit/delete)
+    - Zones management (add/edit/delete)
+    - Sites management (add/edit/delete)
+    - Generator management (add/edit/delete)
+    - Generators' tanks management (add/edit/delete)
+    - Analytics, reporting, & exporting features for all app sections.
+    - Vendor management for fuel providers (add/edit/delete)
+    - user management (add/edit/delete):
+		1-app super admin
+		2-app monitor & report admin
+		3-app users management admin
+		4-region's manager
+		5-zone's supervisor
+		6-zone's field teams
+    - Fuel management & analytics
+    - Fuel Budget management & analytics
+    - Fuel consumption analytics
+    - Fuel usage forecasting analytics
+	- each supervisor should only access and see their zone's data & plans.
+	- each region manager should only access and see their region and its zones' data & plans.
+
+For the design, the app should use:
+
+    Colors: Deep blues and teals for the primary palette with vibrant orange accents for alerts and actions
+    Clean, modern interface with clear data visualization
+    Interactive & responsive design that works well on all devices
+    Subtle shadows and gradients for depth
+    Professional, utilitarian typography
