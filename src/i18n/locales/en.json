@@ -1,15 +1,9 @@
-
 {
   "common": {
     "dashboard": "Dashboard",
-    "regions": "Regions",
-    "zones": "Zones",
-    "sites": "Sites",
-    "generators": "Generators",
-    "planning": "Planning",
-    "vendors": "Vendors",
-    "reports": "Reports",
-    "fieldReports": "Field Reports"
+    "screenshot": "Save as PNG",
+    "success": "Success",
+    "error": "Error"
   },
   "header": {
     "appTitle": "Fuel Flow Planner",
@@ -31,7 +25,9 @@
     "generatorStatus": "Generator Status",
     "planningAnalytics": "Planning and Analytics",
     "viewDetails": "View Details",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "screenshotSaved": "Screenshot saved successfully",
+    "screenshotError": "Error saving screenshot"
   },
   "actions": {
     "add": "Add",

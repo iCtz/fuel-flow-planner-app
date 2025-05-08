@@ -1,15 +1,9 @@
-
 {
   "common": {
     "dashboard": "لوحة التحكم",
-    "regions": "المناطق",
-    "zones": "النطاقات",
-    "sites": "المواقع",
-    "generators": "المولدات",
-    "planning": "التخطيط",
-    "vendors": "الموردون",
-    "reports": "التقارير",
-    "fieldReports": "تقارير الميدان"
+    "screenshot": "حفظ كصورة PNG",
+    "success": "نجاح",
+    "error": "خطأ"
   },
   "header": {
     "appTitle": "مخطط تدفق الوقود",
@@ -31,7 +25,9 @@
     "generatorStatus": "حالة المولد",
     "planningAnalytics": "التخطيط والتحليلات",
     "viewDetails": "عرض التفاصيل",
-    "viewAll": "عرض الكل"
+    "viewAll": "عرض الكل",
+    "screenshotSaved": "تم حفظ لقطة الشاشة بنجاح",
+    "screenshotError": "خطأ في حفظ لقطة الشاشة"
   },
   "actions": {
     "add": "إضافة",
