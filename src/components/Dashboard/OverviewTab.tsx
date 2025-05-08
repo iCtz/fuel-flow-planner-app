@@ -1,6 +1,6 @@
 
 import { QuickStats } from "@/components/Dashboard/QuickStats";
-import { GeneratorCard } from "@/components/Dashboard/GeneratorCard";
+import { StatisticsGeneratorCard } from "@/components/Dashboard/StatisticsGeneratorCard";
 import { UpcomingScheduleCard } from "@/components/Dashboard/UpcomingScheduleCard";
 import { FuelConsumptionChart } from "@/components/Dashboard/FuelConsumptionChart";
 import { useTranslation } from "react-i18next";
@@ -29,7 +29,7 @@ export function OverviewTab({
           <h2 className="text-lg font-medium">{t("dashboard.generatorStatus")}</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {generators.slice(0, 4).map((generator) => (
-              <GeneratorCard key={generator.id} generator={generator} />
+              <StatisticsGeneratorCard key={generator.id} generator={generator} />
             ))}
           </div>
         </div>
