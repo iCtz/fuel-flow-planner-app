@@ -29,13 +29,22 @@ export function DashboardTabs({
   const { t } = useTranslation();
   
   return (
-    <Tabs defaultValue="generators" className="mt-8">
+    <Tabs defaultValue="stats" className="mt-8">
       <TabsList>
+        <TabsTrigger value="stats">{t("dashboard.statistics")}</TabsTrigger>
         <TabsTrigger value="generators">{t("dashboard.generators")}</TabsTrigger>
         <TabsTrigger value="sites">{t("dashboard.sites")}</TabsTrigger>
         <TabsTrigger value="regions">{t("dashboard.regionsZones")}</TabsTrigger>
-        <TabsTrigger value="stats">{t("dashboard.statistics")}</TabsTrigger>
       </TabsList>
+      
+      <TabsContent value="stats">
+        <OverviewTab 
+          generators={generators}
+          upcomingEvents={upcomingEvents}
+          consumptionData={consumptionData}
+          quickStats={quickStats}
+        />
+      </TabsContent>
       
       <TabsContent value="generators">
         <GeneratorsTab generators={generators} />
@@ -47,15 +56,6 @@ export function DashboardTabs({
       
       <TabsContent value="regions">
         <RegionsZonesTab regions={regions} zones={zones} />
-      </TabsContent>
-      
-      <TabsContent value="stats">
-        <OverviewTab 
-          generators={generators}
-          upcomingEvents={upcomingEvents}
-          consumptionData={consumptionData}
-          quickStats={quickStats}
-        />
       </TabsContent>
     </Tabs>
   );
