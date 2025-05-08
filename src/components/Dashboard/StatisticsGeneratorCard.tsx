@@ -38,6 +38,13 @@ export function StatisticsGeneratorCard({ generator }: StatisticsGeneratorCardPr
 
   // Calculate total capacity from all tanks
   const totalCapacity = generator.tanks.reduce((sum, tank) => sum + tank.capacity, 0);
+  
+  // Determine fuel level color based on percentage
+  const getFuelIndicatorColor = (fuelLevel: number) => {
+    if (fuelLevel >= 80) return "from-green-300 to-green-500";
+    if (fuelLevel >= 40) return "from-blue-300 to-blue-500";
+    return "from-red-300 to-red-500";
+  };
 
   return (
     <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
@@ -46,45 +53,48 @@ export function StatisticsGeneratorCard({ generator }: StatisticsGeneratorCardPr
         <p className="text-sm text-muted-foreground">{renderLocalizedString(generator.location)}</p>
       </div>
 
-      <div className="relative mb-4">
-        <div className="h-20 bg-blue-400 rounded-md overflow-hidden relative">
-          <div 
-            className="w-full h-full bg-gradient-to-b from-blue-300 to-blue-500"
-            style={{ 
-              backgroundSize: '100% 100%',
-              position: 'absolute'
-            }}
-          ></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-lg font-bold text-orange-500">{generator.fuelLevel}%</span>
+      <div className="flex items-center gap-4">
+        <div className="relative w-1/3">
+          <div className="h-20 w-20 bg-gray-200 rounded-md overflow-hidden relative">
+            <div 
+              className={`w-full h-full bg-gradient-to-b ${getFuelIndicatorColor(generator.fuelLevel)}`}
+              style={{ 
+                height: `${generator.fuelLevel}%`,
+                position: 'absolute',
+                bottom: 0
+              }}
+            ></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-lg font-bold text-orange-500">{generator.fuelLevel}%</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex justify-between mb-2">
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className="text-xs px-3 py-1 h-8"
-          asChild
-        >
-          <Link to={`/planning?generatorId=${generator.id}`}>
-            <Fuel className="h-4 w-4 mr-1 text-orange-500" />
-            Refill
-          </Link>
-        </Button>
-        
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className="text-xs px-3 py-1 h-8"
-          asChild
-        >
-          <Link to={`/generators/${generator.id}`}>
-            <Settings className="h-4 w-4 mr-1" />
-            Details
-          </Link>
-        </Button>
+        <div className="flex flex-col space-y-2 w-2/3">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="text-xs px-3 py-1 h-8 w-full justify-start"
+            asChild
+          >
+            <Link to={`/planning?generatorId=${generator.id}`}>
+              <Fuel className="h-4 w-4 mr-1 text-orange-500" />
+              Refill
+            </Link>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="text-xs px-3 py-1 h-8 w-full justify-start"
+            asChild
+          >
+            <Link to={`/generators/${generator.id}`}>
+              <Settings className="h-4 w-4 mr-1" />
+              Details
+            </Link>
+          </Button>
+        </div>
       </div>
 
       <div className="flex justify-between items-center mt-4 pt-2 border-t border-gray-200 text-sm">
