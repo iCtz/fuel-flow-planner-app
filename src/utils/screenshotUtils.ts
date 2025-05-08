@@ -1,4 +1,3 @@
-
 import html2canvas from 'html2canvas';
 
 export const takeScreenshot = async (elementId: string, filename: string = 'dashboard-screenshot'): Promise<void> => {
