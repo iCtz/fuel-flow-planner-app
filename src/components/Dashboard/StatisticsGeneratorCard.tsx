@@ -65,7 +65,7 @@ export function StatisticsGeneratorCard({ generator }: StatisticsGeneratorCardPr
               }}
             ></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-lg font-bold text-orange-500">{generator.fuelLevel}%</span>
+              <span className="text-lg font-bold text-black dark:text-white">{generator.fuelLevel}%</span>
             </div>
           </div>
         </div>
